@@ -1,0 +1,175 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:SHOP.ViewModels"
+             xmlns:models="clr-namespace:SHOP.Models"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="SHOP.Views.CartView"
+             x:DataType="vm:CartViewModel"
+             Background="{StaticResource PageBackgroundBrush}">
+    
+    
+    
+
+    <Grid Margin="25" RowDefinitions="Auto, *"> <!-- Row 0: Title, Row 1: Main Content -->
+
+        <!-- Page Title -->
+        <TextBlock Grid.Row="0" Text="Shopping Cart" FontSize="28" FontWeight="Bold"
+                   Foreground="{StaticResource PrimaryTextBrush}"
+                   Margin="0,0,0,20"/>
+
+        <!-- Main Content Area: Items List | Summary -->
+        <Grid Grid.Row="1" ColumnDefinitions="2*, 1*"> <!-- 2/3 for items, 1/3 for summary -->
+
+           <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto">
+    <ItemsControl ItemsSource="{Binding Productslist}">
+        <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+                <WrapPanel Orientation="Horizontal" />
+            </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+
+        <ItemsControl.ItemTemplate>
+            <DataTemplate>
+                <Border Width="600"
+                        Background="White"
+                        CornerRadius="8"
+                        BorderBrush="#DDD"
+                        BorderThickness="1"
+                        Margin="10"
+                        Padding="0"
+                        Cursor="Hand">
+                    <Grid ColumnDefinitions="*,Auto">
+                    <StackPanel>
+                        
+                        <!-- Product Image -->
+                        <Border Height="100" CornerRadius="8,8,0,0" ClipToBounds="True">
+                            <Image Source="/Assets/Media/Logo.png" Stretch="Uniform"
+                                   HorizontalAlignment="Center" VerticalAlignment="Top"/> <!-- TODO: BIND THIS SHIT-->
+                        </Border>
+
+                        <!-- Product Info -->
+                        <StackPanel Margin="10" Spacing="6">
+                            <TextBlock Text="{Binding Key.Name}" 
+                                       FontWeight="SemiBold" 
+                                       FontSize="14" 
+                                       TextWrapping="Wrap"
+                                       Foreground="#222" />
+
+                            <TextBlock Text="{Binding Key.ShortDescription}" 
+                                       FontSize="12" 
+                                       Foreground="#666" 
+                                       TextWrapping="Wrap" 
+                                       MaxHeight="40" />
+
+                            <StackPanel Orientation="Horizontal" Spacing="4">
+                                <TextBlock Text="{Binding Key.SalesPrice}" 
+                                           FontSize="16" 
+                                           FontWeight="Bold" 
+                                           Foreground="#C71585" />
+                                <TextBlock Text="DKK" 
+                                           FontSize="16" 
+                                           FontWeight="Bold" 
+                                           Foreground="#C71585" />
+                            </StackPanel>
+
+                            <TextBlock Text="{Binding Value, StringFormat='Quantity: {0}'}"
+                                       FontSize="12"
+                                       Foreground="#444" />
+                        </StackPanel>
+                    </StackPanel>
+                        <Border Background="White"
+                                CornerRadius="8"
+                                BorderBrush="#DDD"
+                                BorderThickness="1" 
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Top" Grid.Column="1" 
+                                Width="80" 
+                                Cursor="Hand" Padding="0"
+                                Margin="0,0,15,15"
+                                PointerPressed="RemoveFromCartButton_PointerPressed">
+                            <Border.Styles>
+                                <Style Selector="Border:pointerover">
+                                    <Setter Property="BoxShadow" Value="0 0 0 0 transparent" />
+                                </Style>
+                            </Border.Styles>
+                            <StackPanel>
+                                <TextBlock Text="X"
+                                           FontSize="14"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Foreground="Red"/>
+                            </StackPanel>
+                        </Border>
+                       
+                    
+                    </Grid>
+
+                    <!-- Hover effect -->
+                    
+                </Border>
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
+</ScrollViewer>
+
+
+            <!-- Column 1: Order Summary -->
+<Border Grid.Column="1" Background="{StaticResource CardBackgroundBrush}"
+        Padding="20" CornerRadius="8" Height="350" VerticalAlignment="Top">
+    <StackPanel Spacing="15">
+        <TextBlock Text="Order Summary"
+                   FontSize="20"
+                   FontWeight="Bold"
+                   Foreground="{StaticResource PrimaryTextBrush}"
+                   Margin="0,0,0,10"/>
+
+        <!-- Price, Subtotal & Estimated Delivery -->
+        <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto, Auto">
+            <!-- Price -->
+            <TextBlock Grid.Column="0" Grid.Row="0"
+                       Text="Subtotal"
+                       Foreground="{StaticResource PrimaryTextBrush}" />
+            <TextBlock Grid.Column="1" Grid.Row="0"
+                       Text="{Binding TotalPrice, StringFormat={}{0} DKK}"
+                       FontWeight="SemiBold"
+                       Foreground="Black" />
+
+            <!-- Subtotal -->
+            <TextBlock Grid.Column="0" Grid.Row="1"
+                       Text="Quantity"
+                       Foreground="{StaticResource PrimaryTextBrush}" />
+            <TextBlock Grid.Column="1" Grid.Row="1"
+                       Text="{Binding CartService.ItemCount}"
+                       FontWeight="SemiBold"
+                       Foreground="GreenYellow" />
+
+            <!-- Estimated Delivery -->
+            <TextBlock Grid.Column="0" Grid.Row="2"
+                       Grid.ColumnSpan="2"
+                       Text="{Binding EstimatedDelivery}"
+                       FontSize="14"
+                       Foreground="#444" />
+        </Grid>
+        
+        
+
+        <!-- Checkout Button -->
+        <Button Content="Checkout"
+                Height="40"
+                Background="#C71585"
+                Foreground="White"
+                FontWeight="Bold"
+                BorderThickness="0"
+                CornerRadius="6"
+                Margin="0,10,0,0"
+                HorizontalAlignment="Stretch"
+                Command="{Binding CheckoutCommand}"/>
+    </StackPanel>
+</Border>
+
+        </Grid> <!-- End Main Content Grid -->
+
+    </Grid> <!-- End Page Grid -->
+</UserControl>

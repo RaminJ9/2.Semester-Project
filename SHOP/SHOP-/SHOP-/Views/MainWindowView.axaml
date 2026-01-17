@@ -1,0 +1,55 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:SHOP.ViewModels"
+        xmlns:view="clr-namespace:SHOP.Views"
+        mc:Ignorable="d"
+        MinHeight="700"
+        MinWidth="950"
+        x:Class="SHOP.Views.MainWindowView" 
+        x:DataType="vm:MainWindowViewModel"
+        Title="SHOP"
+        WindowStartupLocation="CenterScreen">
+    
+   
+   
+   
+
+    <!-- Use Grid as the root to allow layering -->
+    <Grid>
+
+        <!-- Layer 0: Main Application Layout (DockPanel) -->
+        <DockPanel>
+            <!-- Navigation Bar (Top) -->
+            <view:NavigationbarView DockPanel.Dock="Top"
+                                     DataContext="{Binding NavigationBarVm}"/>
+
+            <!-- Footer (Bottom) -->
+            <view:FooterView DockPanel.Dock="Bottom"/>
+
+            <!-- Main Content Area (Changes Dynamically) -->
+            <!-- ContentControl fills the remaining space in the DockPanel -->
+            <ContentControl Content="{Binding CurrentPage}"/>
+
+        </DockPanel>
+
+
+        <!-- Layer 1: Dialog Overlay Container -->
+        <!-- This Grid covers the entire window and is only visible when a dialog is open -->
+        <Grid Grid.Column="0" Grid.ColumnSpan="2" IsVisible="{Binding CurrentDialog.IsDialogOpen}"> <!-- Ensure it's visually on top -->
+            <Border Background="black" Opacity="0.5"></Border> <!-- Ensure it's visually on top -->
+
+            <!-- ContentControl to host the actual dialog view -->
+            <!-- Centered within the overlay -->
+            <ContentControl Content="{Binding CurrentDialog}"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"/>
+            <!-- Avalonia's ViewLocator will find the correct View (e.g., ItemNotFoundDialogView)
+                 based on the type of the CurrentDialogViewModel instance -->
+
+        </Grid>
+
+    </Grid>
+    
+</Window>

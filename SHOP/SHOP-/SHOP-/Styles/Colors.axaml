@@ -1,0 +1,57 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <!-- Add Controls for Previewer Here -->
+            
+        </Border>
+    </Design.PreviewWith>
+
+    <!-- Add Styles Here -->
+    
+     <Styles.Resources>
+        <ResourceDictionary>
+            <!-- Palette Option 1: Modern Tech Blue & Gray -->
+
+            <!-- Core Palette Colors -->
+            <Color x:Key="ColorWhite">#FFFFFF</Color>
+            <Color x:Key="ColorGray100">#F8F9FA</Color>
+            <Color x:Key="ColorGray200">#E9ECEF</Color>
+            <Color x:Key="ColorGray300">#DEE2E6</Color>
+            <Color x:Key="ColorGray400">#CED4DA</Color>
+            <Color x:Key="ColorGray500">#ADB5BD</Color>
+            <Color x:Key="ColorGray600">#6C757D</Color>
+            <Color x:Key="ColorGray700">#495057</Color>
+            <Color x:Key="ColorGray800">#343A40</Color>
+            <Color x:Key="ColorGray900">#212529</Color>
+            <Color x:Key="ColorBlue">#0D6EFD</Color>
+            <Color x:Key="ColorAmber">#FFC107</Color>
+            <Color x:Key="ColorRed">#DC3545</Color>
+            <Color x:Key="ColorGreen">#198754</Color>
+
+            <!-- Brushes based on Palette -->
+            <SolidColorBrush x:Key="PageBackgroundBrush" Color="{StaticResource ColorWhite}"/>
+            <SolidColorBrush x:Key="CardBackgroundBrush" Color="{StaticResource ColorGray100}"/>
+            <SolidColorBrush x:Key="BorderBrush" Color="{StaticResource ColorGray300}"/>
+            <SolidColorBrush x:Key="PrimaryTextBrush" Color="{StaticResource ColorGray900}"/>
+            <SolidColorBrush x:Key="SecondaryTextBrush" Color="{StaticResource ColorGray600}"/>
+            <SolidColorBrush x:Key="MutedTextBrush" Color="{StaticResource ColorGray500}"/>
+            <SolidColorBrush x:Key="DisabledTextBrush" Color="{StaticResource ColorGray500}"/>
+            <SolidColorBrush x:Key="PrimaryActionBrush" Color="{StaticResource ColorAmber}"/>
+            <SolidColorBrush x:Key="PrimaryActionTextBrush" Color="{StaticResource ColorGray900}"/>
+            <SolidColorBrush x:Key="InfoAccentBrush" Color="{StaticResource ColorBlue}"/>
+            <SolidColorBrush x:Key="ErrorBrush" Color="{StaticResource ColorRed}"/>
+            <SolidColorBrush x:Key="SuccessBrush" Color="{StaticResource ColorGreen}"/>
+            <SolidColorBrush x:Key="NavBarBackgroundBrush" Color="{StaticResource ColorGray800}"/>
+            <SolidColorBrush x:Key="NavBarForegroundBrush" Color="{StaticResource ColorGray100}"/>
+            <SolidColorBrush x:Key="NavBarForegroundMutedBrush" Color="{StaticResource ColorGray500}"/>
+            <SolidColorBrush x:Key="NavBarAccentBrush" Color="{StaticResource ColorBlue}"/>
+            <SolidColorBrush x:Key="NavBarControlBackgroundBrush" Color="{StaticResource ColorGray700}"/>
+            <SolidColorBrush x:Key="NavBarControlBorderBrush" Color="{StaticResource ColorGray600}"/>
+            <SolidColorBrush x:Key="NavBarHoverBackgroundBrush" Color="{StaticResource ColorGray700}"/>
+            <SolidColorBrush x:Key="NavBarBadgeBackgroundBrush" Color="{StaticResource ColorRed}"/>
+            <SolidColorBrush x:Key="NavBarBadgeForegroundBrush" Color="{StaticResource ColorWhite}"/>
+
+        </ResourceDictionary>
+    </Styles.Resources>
+</Styles>

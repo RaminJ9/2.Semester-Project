@@ -1,0 +1,118 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <!-- Add Controls for Previewer Here -->
+            <StackPanel Spacing="10">
+                <Button Content="Base"/>
+                <Button Classes="primary" Content="Primary"/>
+                <Button Classes="secondary" Content="Secondary"/>
+                <Button Classes="IconButton" Content="🛒"/>
+                <Button Classes="primary" IsEnabled="False" Content="Primary Disabled"/>
+                <Button Classes="secondary" IsEnabled="False" Content="Secondary Disabled"/>
+            </StackPanel>
+        </Border>
+    </Design.PreviewWith>
+
+    <!-- Add Styles Here -->
+    
+     <!-- Base Style Applied to ALL Buttons -->
+    <Style Selector="Button">
+        <Setter Property="Padding" Value="10,6"/>
+        <Setter Property="CornerRadius" Value="4"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="MinWidth" Value="80"/>
+        <Setter Property="MinHeight" Value="32"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+         <Setter Property="Transitions">
+            <Transitions>
+                <BrushTransition Property="Background" Duration="0:0:0.1" />
+                <BrushTransition Property="Foreground" Duration="0:0:0.1" />
+                <BrushTransition Property="BorderBrush" Duration="0:0:0.1" />
+            </Transitions>
+        </Setter>
+    </Style>
+
+    <!-- Primary Action Button Style (.primary) -->
+    <!-- These styles assume Brush resources are globally available via App.axaml -->
+    <Style Selector="Button.primary">
+        <Setter Property="Background" Value="{StaticResource PrimaryActionBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource PrimaryActionTextBrush}"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="BorderThickness" Value="0"/>
+    </Style>
+    <Style Selector="Button.primary:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+         <Setter Property="Background" Value="#FFCA2C"/>
+    </Style>
+     <Style Selector="Button.primary:pressed /template/ ContentPresenter#PART_ContentPresenter">
+         <Setter Property="Background" Value="#FFC720"/>
+    </Style>
+     <Style Selector="Button.primary:disabled /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="{StaticResource ColorGray400}"/>
+        <Setter Property="Opacity" Value="0.65"/>
+    </Style>
+    <Style Selector="Button.primary:disabled">
+         <Setter Property="Foreground" Value="{StaticResource ColorGray600}"/>
+    </Style>
+
+
+    <!-- Secondary (Outline) Button Style (.secondary) -->
+    <Style Selector="Button.secondary">
+         <Setter Property="Background" Value="Transparent"/>
+         <Setter Property="Foreground" Value="{StaticResource InfoAccentBrush}"/>
+         <Setter Property="BorderBrush" Value="{StaticResource InfoAccentBrush}"/>
+         <Setter Property="BorderThickness" Value="1"/>
+    </Style>
+     <Style Selector="Button.secondary:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+         <Setter Property="Background" Value="#E7F1FF"/>
+         <Setter Property="Foreground" Value="{StaticResource InfoAccentBrush}"/>
+         <Setter Property="BorderBrush" Value="{StaticResource InfoAccentBrush}"/>
+     </Style>
+    <Style Selector="Button.secondary:pressed /template/ ContentPresenter#PART_ContentPresenter">
+         <Setter Property="Background" Value="#D0E3FF"/>
+         <Setter Property="Foreground" Value="{StaticResource InfoAccentBrush}"/>
+          <Setter Property="BorderBrush" Value="{StaticResource InfoAccentBrush}"/>
+     </Style>
+     <Style Selector="Button.secondary:disabled /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Opacity" Value="0.65"/>
+    </Style>
+    <Style Selector="Button.secondary:disabled">
+        <Setter Property="Foreground" Value="{StaticResource ColorGray500}"/>
+         <Setter Property="BorderBrush" Value="{StaticResource ColorGray300}"/>
+    </Style>
+
+
+    <!-- IconButton specific style (.IconButton) -->
+     <Style Selector="Button.IconButton">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{StaticResource NavBarForegroundBrush}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="Margin" Value="5,0"/>
+            <Setter Property="MinWidth" Value="0"/>
+             <Setter Property="MinHeight" Value="0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+    </Style>
+    <Style Selector="Button.IconButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="{StaticResource NavBarHoverBackgroundBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource NavBarForegroundBrush}"/>
+    </Style>
+    <Style Selector="Button.IconButton:pressed /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="{StaticResource NavBarControlBackgroundBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource NavBarForegroundBrush}"/>
+    </Style>
+     <Style Selector="Button.IconButton:disabled /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Opacity" Value="0.5"/>
+    </Style>
+     <Style Selector="Button.IconButton:disabled">
+         <Setter Property="Foreground" Value="{StaticResource NavBarForegroundMutedBrush}"/>
+    </Style>
+</Styles>

@@ -1,0 +1,99 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:SHOP.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="SHOP.Views.ProductPageView"
+             x:DataType="vm:ProductPageViewModel"
+             Background="{StaticResource PageBackgroundBrush}">
+    
+    
+    
+
+     <!-- Resources assumed global -->
+    <Grid ColumnDefinitions="*, 1.5*" Margin="20">
+        
+
+        <!-- == Image Area (Column 0) == -->
+        <Border Grid.Column="0" CornerRadius="8" Margin="0,0,20,0" ClipToBounds="True"
+                BorderThickness="1" BorderBrush="{StaticResource BorderBrush}">
+            <!-- Bind Image Source -->
+            <Image Source="/Assets/Media/Logo.png" Stretch="Uniform"
+                   HorizontalAlignment="Center" VerticalAlignment="Top"/> <!-- TODO: FIX BINDING AFTERWARDS-->
+            
+        </Border>
+
+
+        <!-- == Details Area (Column 1) == -->
+        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+
+                <!-- Product Title -->
+                <TextBlock  Text="{Binding Product.Name}" FontSize="28" FontWeight="Bold" TextWrapping="Wrap"
+                           Foreground="{StaticResource PrimaryTextBrush}"/>
+                
+                
+
+                <!-- Category/Manufacturer -->
+                <TextBlock Margin="0,15,0,5" Text="{Binding Product.Manufacturer, StringFormat='Manufacturer: {0}'}" FontSize="14" Foreground="{StaticResource InfoAccentBrush}" />
+                 <!-- Using Manufacturer as stand-in for category -->
+
+                <!-- Price -->
+                <TextBlock FontSize="26" FontWeight="SemiBold" Margin="0,5,0,0">
+                    <Run Text="DKK " Foreground="{StaticResource PrimaryActionBrush}"/> <!-- Changed Currency Symbol -->
+                    <Run Text="{Binding Product.SalesPrice}" Foreground="{StaticResource PrimaryActionBrush}"/> <!-- Bind to Formatted VM Prop -->
+                    <Run Text=" "/>
+                    <!-- Bind Retail Price, Format, and Visibility -->
+                    <Run Text="{Binding Product.RetailPrice}" FontSize="16" Foreground="#6C757D" TextDecorations="Strikethrough"/>
+                </TextBlock>
+
+                <!-- Ratings (Still Hardcoded Example) -->
+                <StackPanel Orientation="Horizontal" Spacing="5">
+                    <TextBlock Text="★★★★☆" FontSize="18" Foreground="#FFC107"/>
+                    <!-- TODO: Bind Review Count if available -->
+                    <TextBlock Text="(125 Reviews)" VerticalAlignment="Center" Foreground="{StaticResource InfoAccentBrush}" />
+                </StackPanel>
+
+                <!-- Product Description -->
+                <TextBlock Name="ProductDescription"
+                           Text="{Binding Product.LongDescription}" 
+                           FontSize="15" TextWrapping="Wrap" LineHeight="22"
+                           Foreground="{StaticResource PrimaryTextBrush}"
+                           Margin="0,10,0,10"/>
+
+                <!-- Quantity Selector -->
+                <StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center" Margin="0,10,0,10">
+                    <TextBlock Text="Quantity:" FontWeight="SemiBold" VerticalAlignment="Center" Foreground="{StaticResource PrimaryTextBrush}"/>
+                    <NumericUpDown Value="{Binding Quantity}" Minimum="1" Maximum="99" Width="120"  Foreground="Blue" FormatString="0"/>  
+                </StackPanel>
+
+                <!-- Action Buttons -->
+                <StackPanel Orientation="Horizontal" Spacing="15" Margin="0,15,0,0">
+
+                    <!-- Add to Cart Button -->
+                    <Border CornerRadius="5" Margin="0" Padding="0" BoxShadow="0 3 5 0 #33000000">
+                        <Button Name="AddToCartButton" Content="Add to Cart" Padding="25,12" FontSize="16" FontWeight="Bold"
+                                Background="{StaticResource PrimaryActionBrush}" Foreground="{StaticResource PrimaryActionTextBrush}"
+                                BorderThickness="0" CornerRadius="5" Cursor="Hand" Margin="0"
+                                Command="{Binding AddItemToCartCommand}"
+                                > <!-- todo:Create/Bind AddToCartCommand --> 
+                    <Button.Styles>
+                        <Style Selector="Button:pointerover /template/ ContentPresenter">
+                            <Setter Property="Background" Value="#FFCA2C"/>
+                        </Style>
+                    </Button.Styles>
+                    </Button>
+                    </Border>  
+                    
+
+                   
+                </StackPanel>
+
+                 
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+    
+</UserControl>

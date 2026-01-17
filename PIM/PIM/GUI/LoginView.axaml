@@ -1,0 +1,86 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="PIM.LoginView">
+   <Grid Background="White"> 
+        <Border Width="350" Height="370" Background="White" CornerRadius="12" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="20" BorderBrush="SteelBlue" BorderThickness="2">
+            <StackPanel Spacing="12">
+                <TextBlock Text="WELCOME TO PIM" FontSize="22" FontWeight="Bold" Foreground="SteelBlue" HorizontalAlignment="Center" />
+
+                <TextBox Name="Username_LogIn" Watermark="Username" Background="AliceBlue" BorderBrush="SteelBlue" CornerRadius="6" />
+
+                <TextBox Name="Password_LogIn" PasswordChar="*" Watermark="Password" Margin="0,5,0,0" Background="AliceBlue" BorderBrush="SteelBlue" CornerRadius="6" />
+
+                <!-- Login / Logout Buttons -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
+                    <Button Name="Button_LogIn" Click="LoginButton_Click" IsEnabled="True" Background="SteelBlue" Foreground="White" Height="35" Width="100" CornerRadius="6">Log In</Button>
+                    <Button Name="Button_LogOut"
+                            Click="LogOutButton_Click" 
+                            IsEnabled="False" 
+                            Background="SteelBlue"
+                            Foreground="White"
+                            Height="35"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Width="100"
+                            CornerRadius="6">
+                        Log Out
+                    </Button>
+                </StackPanel>
+
+                <!-- Secret Code -->
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            Spacing="10">
+                    <Button Name="SecretCodeApply"
+                            Click="SecretCode_Click"
+                            IsEnabled="False"
+                            Background="SteelBlue"
+                            Foreground="White"
+                            Height="35"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Width="100"
+                            CornerRadius="6">
+                        Apply
+                    </Button>
+                    <TextBox Name="Supervisor_Code"
+                             PasswordChar="*"
+                             Watermark="Admin Code"
+                             IsEnabled="False"
+                             Width="140"
+                             Background="AliceBlue"
+                             BorderBrush="SteelBlue"
+                             CornerRadius="6" />
+                </StackPanel>
+
+                <!-- Output box -->
+                <TextBox Name="outputLogIn"
+                         Foreground="Black"
+                         Width="260"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Center"
+                         IsReadOnly="True"
+                         Background="WhiteSmoke"
+                         BorderBrush="SteelBlue"
+                         CornerRadius="6" />
+                
+                <!-- button to user management -->
+                <Button Click="UserManagementButton"
+                        IsEnabled="False"
+                        Name="UserButton"
+                        Background="MediumPurple"
+                        Foreground="White"
+                        Height="35"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Width="140"
+                        CornerRadius="6">
+                    User Management
+                </Button>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

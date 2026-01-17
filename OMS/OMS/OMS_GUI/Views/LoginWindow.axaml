@@ -1,0 +1,49 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="350" d:DesignHeight="265"
+        x:Class="OMS_GUI.LoginWindow"
+        Title="OMS Login"
+		Width="350"
+        Height="265"
+        SizeToContent="WidthAndHeight"
+        WindowStartupLocation="CenterScreen">
+	<Grid Background="White">
+		<TabControl SelectedIndex="0">
+			<TabItem Foreground="Black" Header="Login">
+				<ScrollViewer>
+					<StackPanel Margin="20" Spacing="25">
+						<TextBox Watermark="Employee ID" 
+						         FontSize="15" 
+						         Height="30" 
+						         Width="290" 
+						         x:Name="EmployeeIdBox"/>
+
+						<TextBox Watermark="Password" 
+						         FontSize="15" 
+						         Height="30" 
+						         Width="290" 
+						         PasswordChar="*" 
+						         x:Name="PasswordBox"/>
+						
+						<TextBlock x:Name="ErrorMessage"
+						           Foreground="Red"
+						           IsVisible="False"
+						           TextWrapping="Wrap"
+						           FontWeight="Bold" />
+						
+						<Button Content="Login"
+								FontSize="16"
+								Margin="0,20,0,0"
+								Height="35"
+								Width="100"
+								HorizontalAlignment="Center"
+								IsDefault="True"
+								Click="OnLoginButtonClick"/>
+					</StackPanel>
+				</ScrollViewer>
+			</TabItem>
+		</TabControl>
+	</Grid>
+</Window>

@@ -1,0 +1,67 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="700" d:DesignHeight="700"
+        x:Class="DAM.MainWindow"
+        Title="DAM">
+
+	<Grid ColumnDefinitions="*,Auto">
+		<TabControl Grid.Column="0">
+			
+			<TabItem Header="Search">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*" />
+						<ColumnDefinition Width="Auto" />
+					</Grid.ColumnDefinitions>
+
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="*"/>
+					</Grid.RowDefinitions>
+					<StackPanel  Grid.Column="0" Grid.Row="0" Grid.RowSpan="6" Margin="1,20">
+						<StackPanel Orientation="Horizontal">
+							<StackPanel Margin="10">
+								<TextBox HorizontalAlignment="Left" Name="SearchBox" Width="650" Watermark="Type to search..." />
+								<Button Content="Search" Click="OnSearchClicked" Width="100" Margin="0 10"/>
+								<ListBox Name="ResultsList" Width="650" Height="200" SelectionChanged="OnResultsListSelectionChanged"/>
+							</StackPanel>
+						</StackPanel>
+						
+					</StackPanel>
+					<Border Grid.Column="1" Grid.Row="0" Grid.RowSpan="6" BorderBrush="Black" BorderThickness="1" Margin="10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+						<Image x:Name="ImageDisplay" Width="350" Height="300" Stretch="Uniform"/>
+					</Border>
+				</Grid>
+			</TabItem>
+
+			<TabItem Header="Database Control">
+				<StackPanel Margin="1,20">
+					<StackPanel Orientation="Horizontal">
+						<StackPanel Margin="10">
+							<TextBlock HorizontalAlignment="Left" Margin="0 5" Width="300" Text="Select Media File:"/>
+							<ComboBox Name="FileDropdown"/>
+
+							<TextBlock HorizontalAlignment="Left" Margin="0 5" Width="650" Text="Enter Tags (comma-separated):"/>
+							<TextBox Name="TagInput"/>
+
+							<Button Name="SaveTagsButton" Content="Save Tags" Margin="0 10" Click="SaveTags"/>
+							<ListBox Name="Results_List" Width="650" Height="200"/>
+							
+							<Button Name="BatchUpload" Content="Upload files" Margin="0 10" Click="OnUploadBatchCliked"/>
+							
+							<TextBox HorizontalAlignment="Left" Name="DeleteIdInput" Width="200" Watermark="Enter Asset ID to delete..." Margin="0 10"/>
+							<Button Content="Delete Asset" Click="OnDeleteAssetClicked" Width="120" Margin="0 10"/>
+
+						</StackPanel>
+					</StackPanel>
+				</StackPanel>
+			</TabItem>
+
+		</TabControl>
+	</Grid>
+</Window>

@@ -1,0 +1,58 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="OMS_GUI.Views.OrderChangerWindowView"
+             Width="824" Height="600"
+             xmlns:vm="clr-namespace:OMS_GUI.ViewModels"
+             x:DataType="vm:OrderChangerWindowViewModel">
+    
+                <StackPanel Margin="20" Spacing="15" VerticalAlignment="Center">
+                    <TabItem Header="Order Changer" FontWeight="Bold" Foreground="Black"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Order ID Row -->
+                        <TextBlock Text="Order ID:" Grid.Row="0" Grid.Column="0" FontSize="16" VerticalAlignment="Center"/>
+                        <TextBox x:Name="OrderIdBox" Grid.Row="0" Grid.Column="1" FontSize="16" Height="30" Margin="10,0,0,0"/>
+
+                        <!-- Items Row -->
+                        <TextBlock Text="Status:" Grid.Row="1" Grid.Column="0" FontSize="16" VerticalAlignment="Center"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" FontSize="16" Height="30" Margin="10,0,0,0"/>
+
+                        <!-- Notes Row -->
+                        <TextBlock Text="adress:" Grid.Row="2" Grid.Column="0" FontSize="16" VerticalAlignment="Center"/>
+                        <TextBox Grid.Row="2" Grid.Column="1" FontSize="16" Height="30" Margin="10,0,0,0" AcceptsReturn="True"/>
+
+                        <!-- Quantity Row -->
+                        <TextBlock Text="Quantity:" Grid.Row="3" Grid.Column="0" FontSize="16" VerticalAlignment="Center"/>
+                        <NumericUpDown Grid.Row="3" Grid.Column="1" FontSize="16" Height="30" Margin="10,0,0,0"/>
+                    </Grid>
+
+                    <!-- Action Buttons -->
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="10" Margin="0,20,0,0">
+                        <Button Content="Load" FontSize="16" Height="35" Width="100"/>
+                        <TextBlock x:Name="ClickMessage"
+                                   Foreground="ForestGreen"
+                                   IsVisible="False"
+                                   TextWrapping="Wrap"
+                                   FontWeight="Bold" />
+                        <Button Content="Save" FontSize="16" Height="35" Width="100"/>
+                        <TextBlock x:Name="SaveMessage"
+                                   Foreground="ForestGreen"
+                                   IsVisible="False"
+                                   TextWrapping="Wrap"
+                                   FontWeight="Bold" />
+                    </StackPanel>
+                </StackPanel>
+</UserControl>

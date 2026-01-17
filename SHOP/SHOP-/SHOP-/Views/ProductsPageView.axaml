@@ -1,0 +1,165 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:SHOP.ViewModels"
+             xmlns:models="clr-namespace:SHOP.Models"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="SHOP.Views.ProductsPageView"
+             x:DataType="vm:ProductsPageViewModel">
+    
+    <!-- Assume Resources (Brushes like PageBackgroundBrush, CardBackgroundBrush, BorderBrush, -->
+    <!-- PrimaryTextBrush, SecondaryTextBrush, PrimaryActionBrush, InfoAccentBrush) -->
+    <!-- and Styles (Button.primary, Button.secondary, Button.small, Button.IconButton) -->
+    <!-- are defined globally in App.axaml -->
+
+    <Grid Margin="20" ColumnDefinitions="280, *">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/> <!-- Content Row -->
+        </Grid.RowDefinitions>
+
+        <!-- == Column 0: Sidebar Filters == -->
+        <Border Grid.Row="0" Grid.Column="0" Margin="0,0,20,0" Padding="15"
+                Background="{StaticResource CardBackgroundBrush}" CornerRadius="8"
+                BorderBrush="{StaticResource BorderBrush}" BorderThickness="1">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel Spacing="20">
+                    <TextBlock Text="Filters" FontSize="18" FontWeight="Bold" Foreground="{StaticResource PrimaryTextBrush}" Margin="0,0,0,10"/>
+
+                    <!-- Price Filter -->
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="Price Range" FontWeight="Medium" Foreground="{StaticResource PrimaryTextBrush}"/>
+                        <Slider Minimum="0" Maximum="20000" Value="15000"/> <!-- Sample Values -->
+                        <TextBlock Text="Up to DKK 15,000.00" Foreground="{StaticResource SecondaryTextBrush}" FontSize="12" HorizontalAlignment="Right"/> <!-- Sample Text -->
+                    </StackPanel>
+
+                    <!-- Screen Size Filter (Example) -->
+                    <StackPanel Spacing="8">
+                        <TextBlock Text="Screen Size (Inches)" FontWeight="Medium" Foreground="{StaticResource PrimaryTextBrush}"/>
+                         <Slider Minimum="10" Maximum="60" Value="45"/> <!-- Sample Values -->
+                         <TextBlock Text="45 inches" Foreground="{StaticResource SecondaryTextBrush}" FontSize="12" HorizontalAlignment="Right"/> <!-- Sample Text -->
+                    </StackPanel>
+
+                    <!-- Example: Expander for Brand Filter -->
+                    <Expander Header="Brand" HorizontalAlignment="Stretch">
+                        <StackPanel Margin="0,5,0,0" Spacing="5">
+                            <!-- Sample Checkboxes -->
+                            <CheckBox Content="Logitech" IsChecked="False"/>
+                            <CheckBox Content="Razer" IsChecked="True"/>
+                            <CheckBox Content="ASUS" IsChecked="False"/>
+                            <CheckBox Content="MSI" IsChecked="False"/>
+                            <CheckBox Content="NVIDIA" IsChecked="True"/>
+                        </StackPanel>
+                    </Expander>
+
+                     <!-- Example: Expander for Color Filter -->
+                     <Expander Header="Color" HorizontalAlignment="Stretch">
+                         <StackPanel Margin="0,5,0,0" Spacing="5">
+                             <CheckBox Content="Black" IsChecked="False"/>
+                             <CheckBox Content="White" IsChecked="False"/>
+                             <CheckBox Content="Silver" IsChecked="False"/>
+                         </StackPanel>
+                     </Expander>
+
+                    <Button Classes="primary" Content="Apply Filters" HorizontalAlignment="Stretch" Margin="0,20,0,0"/>
+
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+
+
+        <!-- == Column 1: Main Product Area == -->
+        <DockPanel Grid.Row="0" Grid.Column="1">
+
+            <!-- Header: Category Title & Sorting -->
+            <Border DockPanel.Dock="Top" Padding="0,0,0,15" Margin="0,0,0,15"
+                    BorderBrush="{StaticResource BorderBrush}" BorderThickness="0,0,0,1">
+                <Grid ColumnDefinitions="*, Auto">
+                     <TextBlock Grid.Column="0" Text="{Binding Category}" FontSize="24" FontWeight="SemiBold" VerticalAlignment="Center" Foreground="{StaticResource PrimaryTextBrush}"/>
+                     <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                         <TextBlock Text="Sort by:" VerticalAlignment="Center" Foreground="{StaticResource SecondaryTextBrush}"/>
+                         <ComboBox Width="150" SelectedIndex="0"> <!-- Sample Selection -->
+                            <ComboBoxItem Content="Price: Low to High"/>
+                            <ComboBoxItem Content="Price: High to Low"/>
+                            <ComboBoxItem Content="Name: A-Z"/>
+                         </ComboBox>
+                     </StackPanel>
+                </Grid>
+            </Border>
+
+            
+           <!-- Product Grid -->
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <!-- **** OUTER ItemsControl - Bind to the correct collection **** -->
+                <ItemsControl ItemsSource="{Binding Productslist}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                             <WrapPanel Orientation="Horizontal" ItemWidth="240" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
+                    <!-- **** ADD ItemTemplate HERE for ProductModel **** -->
+                    <ItemsControl.ItemTemplate>
+                         <!-- DataType should be ProductModel -->
+                         <DataTemplate x:DataType="models:ProductModel"> <!-- Make sure xmlns:models="clr-namespace:SHOP.Models" exists -->
+                              <Border Width="230" Background="White" CornerRadius="8" BorderThickness="1"
+                                      BorderBrush="{StaticResource BorderBrush}" Cursor="Hand" Padding="0"
+                                      Margin="0,0,15,15" 
+                                      PointerPressed="ProductsBorder_PointerPressed"> <!-- Attach handler -->
+
+                                  <StackPanel>
+                                      <Border Height="170" CornerRadius="8,8,0,0" ClipToBounds="True" Background="{StaticResource CardBackgroundBrush}">
+                                           <!-- Bind to ImageUrl -->
+                                           <Image Source="/Assets/Media/Logo.png"
+                                                  
+                                                  HorizontalAlignment="Stretch"
+                                                  VerticalAlignment="Stretch"/>
+                                           <!-- Added FallbackValue -->
+                                      </Border>
+                                      <StackPanel Spacing="6" Margin="12">
+                                           <TextBlock Text="{Binding Name}" Height="40" FontWeight="Medium" TextWrapping="Wrap" Foreground="{StaticResource PrimaryTextBrush}" ToolTip.Tip="{Binding Name}"/>
+                                           <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Left">
+                                               <TextBlock  Text="{Binding SalesPrice}" FontSize="16" FontWeight="Bold" Foreground="{StaticResource PrimaryActionBrush}"/>
+                                               <TextBlock  Text="dkk" FontSize="16" FontWeight="Bold" Foreground="{StaticResource PrimaryActionBrush}"/>
+                                           </StackPanel>
+                                           
+                                            <TextBlock Text="★★★★☆" FontSize="14" Foreground="{StaticResource PrimaryActionBrush}" Margin="0,-5,0,3"/>
+                                             <!-- Add Command binding if available on ProductModel or wrap in ProductViewModel -->
+                                           <Border Width="120" Background="Transparent" CornerRadius="0" BorderThickness="0"
+                                                    Cursor="Hand" Padding="0"
+                                                   Margin="0,0,15,15"
+                                                   PointerPressed="AddToCartButton_PointerPressed">
+                                               <Border.Styles>
+                                                   <Style Selector="Border:pointerover">
+                                                       <Setter Property="BoxShadow" Value="0 0 0 0 transparent" />
+                                                   </Style>
+                                               </Border.Styles>
+                                               <StackPanel>
+                                                   <TextBlock Text="Product Name" Margin="0,0,0,10" Foreground="White"/>
+                                                   <!--todo: this button requires a lot of work
+                                                   
+                                                   Button Content="Add to Cart"
+                                                           Classes="secondary small"
+                                                           HorizontalAlignment="Stretch"
+                                                           IsHitTestVisible="False" 
+                                                           Background="White"
+                                                           Foreground="Black"/-->
+                                               </StackPanel>
+                                           </Border>
+                                      </StackPanel>
+                                  </StackPanel>
+                                   <Border.Styles><Style Selector="Border:pointerover"><Setter Property="BoxShadow" Value="0 5 15 0 #1A000000" /></Style></Border.Styles>
+                              </Border>
+                             
+                          </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    <!-- **** REMOVED the nested ItemsControl and sample Border items **** -->
+
+                </ItemsControl>
+            </ScrollViewer>
+
+        </DockPanel> <!-- End Main Content DockPanel -->
+
+    </Grid> <!-- End Main Grid -->
+    
+</UserControl>

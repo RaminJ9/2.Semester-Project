@@ -1,0 +1,33 @@
+# Ignore Visual Studio 2022 specific files
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Ignore VSCode specific files
+.vscode/
+
+# Ignore Rider IDE specific files
+.idea/
+*.iml
+out/
+
+# Ignore C# build artifacts
+bin/
+obj/
+*.exe
+*.dll
+*.pdb
+*.nuget
+credentials.csv
+
+# Ignore ASP.NET Core specific files
+appsettings*.json
+
+
+# Ignore Postgres database files
+pgdata/
+*.pgsql
+*.psql
+/DAM/DAM 1/DAMDatabase/Media

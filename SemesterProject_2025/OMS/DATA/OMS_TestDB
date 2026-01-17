@@ -1,0 +1,88 @@
+-- ZIP Table
+CREATE TABLE zip (
+                     id SERIAL PRIMARY KEY,
+                     zip_code INT NOT NULL,
+                     country VARCHAR(59) NOT NULL,
+                     city VARCHAR(50) NOT NULL,
+                     UNIQUE (zip_code, city, country) -- Optional: ensure unique combinations
+);
+
+-- Customer Table (referencing zip.id instead of zip_code)
+CREATE TABLE customer (
+                          customer_id SERIAL PRIMARY KEY,
+                          first_name VARCHAR(150) NOT NULL,
+                          last_name VARCHAR(150) NOT NULL,
+                          email VARCHAR(255) UNIQUE NOT NULL,
+                          phone_number VARCHAR(20),
+                          address VARCHAR(500) NOT NULL,
+                          zip_id INT NOT NULL,
+                          FOREIGN KEY (zip_id) REFERENCES zip(id) ON DELETE CASCADE
+);
+
+-- Shipping Options Table
+CREATE TABLE shipping_options (
+                                  id SERIAL PRIMARY KEY,
+                                  delivery_option VARCHAR(50) CHECK (delivery_option IN ('Nearest_postbox', 'At_home')) NOT NULL,
+                                  price DECIMAL(10,2) NOT NULL CHECK (price >= 0),
+                                  delivery_company VARCHAR(50) NOT NULL
+
+);
+
+-- Orders Table
+CREATE TABLE orders (
+                        order_id SERIAL PRIMARY KEY,
+                        created_on TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+                        customer_id INT NOT NULL,
+                        status VARCHAR(50) CHECK (status IN ('New', 'Processing', 'Shipped', 'Delivered', 'Canceled', 'Returned')),
+                        total DECIMAL(10,2) NOT NULL CHECK (total >= 0),
+                        vat_total decimal (10,2) check ( vat_total >= 0 ),
+                        shipping_address VARCHAR(255) NOT NULL,
+                        shipping_option_id INT NOT NULL,
+                        delivery_fee DECIMAL(10,2) NOT NULL CHECK (delivery_fee >= 0),
+                        FOREIGN KEY (customer_id) REFERENCES customer(customer_id) ON DELETE CASCADE,
+                        FOREIGN KEY (shipping_option_id) REFERENCES shipping_options(id) ON DELETE CASCADE
+);
+
+-- Products Table
+CREATE TABLE product (
+                         product_id SERIAL PRIMARY KEY,
+                         name VARCHAR(255) NOT NULL,
+                         price DECIMAL(10,2) NOT NULL CHECK (price > 0),
+                         stock_quantity INT NOT NULL CHECK (stock_quantity >= 0),
+);
+
+-- Item List Table (Products in an order)
+CREATE TABLE item_list (
+                           item_id SERIAL PRIMARY KEY,
+                           order_id INT NOT NULL,
+                           product_id INT NOT NULL,
+                           quantity INT NOT NULL CHECK (quantity > 0),
+                           price_per_unit DECIMAL(10,2) NOT NULL,
+                           total_price DECIMAL(10,2) GENERATED ALWAYS AS (quantity * price_per_unit) STORED,
+                           FOREIGN KEY (order_id) REFERENCES orders(order_id) ON DELETE CASCADE,
+                           FOREIGN KEY (product_id) REFERENCES product(product_id) ON DELETE CASCADE
+);
+
+-- Shipping Table
+CREATE TABLE shipping (
+                          shipping_id SERIAL PRIMARY KEY,
+                          shipping_options_id int not null,
+                          order_id INT NOT NULL,
+                          tracking_number VARCHAR(50) UNIQUE,
+                          foreign key (shipping_options_id) REFERENCES shipping_options(id),
+                          FOREIGN KEY (order_id) REFERENCES orders(order_id) ON DELETE CASCADE
+
+);
+
+-- Returned Items Table
+CREATE TABLE returned_item_list (
+                                    return_id SERIAL PRIMARY KEY,
+                                    order_id INT NOT NULL,
+                                    item_id INT NOT NULL,
+                                    reason TEXT NOT NULL,
+                                    return_status VARCHAR(50) CHECK (return_status IN ('Awaiting', 'Approved', 'Denied')),
+                                    processed_on TIMESTAMP DEFAULT NULL,
+                                    quantity_returned INT NOT NULL CHECK (quantity_returned > 0),
+                                    FOREIGN KEY (order_id) REFERENCES orders(order_id) ON DELETE CASCADE,
+                                    FOREIGN KEY (item_id) REFERENCES item_list(item_id) ON DELETE CASCADE
+);

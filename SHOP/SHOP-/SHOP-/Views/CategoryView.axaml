@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="SHOP.Views.CategoryView" 
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:SHOP.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="vm:CategoryViewModel">
+    
+    
+   
+    
+    <!-- ... Resources ... -->
+
+    <StackPanel>
+        <ItemsControl ItemsSource="{Binding Categories}"> <!-- Binds to ObservableCollection<string> -->
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Orientation="Horizontal" ItemWidth="180" ItemHeight="100"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate x:DataType="x:String"> <!-- DataContext inside is the category name string -->
+                    <Border Background="{StaticResource CardBackgroundBrush}" CornerRadius="6" Padding="15" Margin="0,0,15,15"
+                            BorderBrush="{StaticResource BorderBrush}" BorderThickness="1" Cursor="Hand"
+                           
+                            PointerPressed="CategoryBorder_PointerPressed">
+
+                        <StackPanel Spacing="8" VerticalAlignment="Center">
+                            <TextBlock Text="⚙️" FontSize="24" HorizontalAlignment="Center" Foreground="{StaticResource PrimaryTextBrush}"/>
+                            <TextBlock Text="{Binding}" FontWeight="Medium" HorizontalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap" Foreground="{StaticResource PrimaryTextBrush}"/>
+                        </StackPanel>
+                        <Border.Styles>
+                            <Style Selector="Border:pointerover">
+                                <Setter Property="Background" Value="{StaticResource ColorGray200}"/>
+                            </Style>
+                        </Border.Styles>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </StackPanel>
+    
+</UserControl>

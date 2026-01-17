@@ -1,0 +1,71 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:SHOP.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="SHOP.Views.ContentPagesView"
+             x:DataType="vm:ContentPagesViewModel">
+  
+     <!-- Local brushes just for this view -->
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="CardBackgroundBrush" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="BorderBrush" Color="#E0E0E0"/>
+        <SolidColorBrush x:Key="PrimaryTextBrush" Color="#1F1F1F"/>
+        <SolidColorBrush x:Key="AccentBrush" Color="#3B82F6"/>
+        <SolidColorBrush x:Key="ColorGray200" Color="#F3F4F6"/>
+    </UserControl.Resources>
+
+   <Border Padding="20" Background="#0E0E0E"> <!-- Applies padding and dark background -->
+        <StackPanel>
+            <TextBlock Text="Contents Pages"
+                       FontSize="20"
+                       FontWeight="Bold"
+                       Foreground="#EDEDED"
+                       Margin="0,0,0,15"/>
+
+            <ItemsControl ItemsSource="{Binding Contents}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" ItemWidth="180" ItemHeight="120"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="x:String">
+                        <Border Background="{StaticResource CardBackgroundBrush}"
+                                CornerRadius="10"
+                                Padding="12"
+                                Margin="0,0,15,15"
+                                BorderBrush="{StaticResource BorderBrush}"
+                                BorderThickness="1"
+                                Cursor="Hand"
+                                PointerPressed="ContentBorder_PointerPressed">
+
+                            <StackPanel Spacing="10" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <Image Source="/Assets/Media/info.png"
+                                       Width="30" Height="30"
+                                       HorizontalAlignment="Center"/>
+
+                                <TextBlock Text="{Binding}"
+                                           FontWeight="Medium"
+                                           FontSize="14"
+                                           TextWrapping="Wrap"
+                                           HorizontalAlignment="Center"
+                                           TextAlignment="Center"
+                                           Foreground="{StaticResource PrimaryTextBrush}"/>
+                            </StackPanel>
+
+                            <Border.Styles>
+                                <Style Selector="Border:pointerover">
+                                    <Setter Property="Background" Value="{StaticResource ColorGray200}"/>
+                                    <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
+                                </Style>
+                            </Border.Styles>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </Border>
+</UserControl>

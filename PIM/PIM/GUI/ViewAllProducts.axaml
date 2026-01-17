@@ -1,0 +1,190 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:models="clr-namespace:PIM.Models;assembly=PIM"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="PIM.ViewAllProducts">
+
+  <ContentControl Name="ProductsContent">
+    <Grid Background="White" Margin="20">
+
+     
+      <Border BorderBrush="SteelBlue" BorderThickness="1" CornerRadius="8" Padding="20" Background="White">
+
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" MaxHeight="45"/> 
+            <RowDefinition Height="Auto"/> 
+            <RowDefinition Height="*"/> 
+          </Grid.RowDefinitions>
+
+          <!-- Top bar --> 
+          <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto"/>
+              <ColumnDefinition Width="8*"/>
+              <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Click="SearchButtonClick"
+                    Grid.Column="0"
+                    Margin="5,5,0,5"
+                    Background="SteelBlue"
+                    Foreground="White"
+                    CornerRadius="6">Search</Button>
+
+            <TextBox Name="SearchBar"
+                     Watermark="Search..."
+                     Grid.Column="1"
+                     Margin="5"/>
+
+            <Button Grid.Column="2"
+                    Click="NewProductButton"
+                    Margin="5,5,5,5"
+                    HorizontalAlignment="Right"
+                    Background="SteelBlue"
+                    Foreground="White"
+                    VerticalAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    CornerRadius="6">Add New Product</Button>
+          </Grid>
+
+          <!--Second bar-->
+          <Border Grid.Row="1" BorderBrush="SteelBlue" BorderThickness="0,0,0,1" Margin="0,0,0,5">
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+              </Grid.ColumnDefinitions>
+
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" MaxHeight="15"/>
+                <RowDefinition Height="Auto" MaxHeight="45"/>
+              </Grid.RowDefinitions>
+
+              <Button Grid.Row="1" Grid.Column="0"
+                      Margin="5,0,5,5"
+                      Click="DeleteSelected"
+                      Background="SteelBlue"
+                      Foreground="White"
+                      CornerRadius="6">Delete</Button>
+
+              <TextBlock Grid.Row="0" Grid.Column="1" Margin="5,0,0,0" FontSize="10">Filter by:</TextBlock>
+              <ComboBox Grid.Row="1" Grid.Column="1" Margin="5,0,5,5" Name="CategoryCombo" SelectionChanged="FilterChanged" />
+
+              <TextBlock Grid.Row="0" Grid.Column="2" Margin="5,0,0,0" FontSize="10">Sort by:</TextBlock>
+              <ComboBox Grid.Row="1" Grid.Column="2" Margin="5,0,5,5" Name="SortCombo" SelectionChanged="SortChanged"/>
+
+              <TextBlock Grid.Row="0" Grid.Column="3" Margin="5,0,0,0" FontSize="10">Order by:</TextBlock>
+              <ComboBox Grid.Row="1" Grid.Column="3" Margin="5,0,5,5" Name="SortOrderCombo" SelectionChanged="SortOrderChanged"/>
+            </Grid>
+          </Border>
+
+         
+          <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+            <Grid RowDefinitions="38, 1*">
+
+              <!-- Table Header -->
+              <Grid Height="38">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="45"/>
+                  <ColumnDefinition Width="3.5*"/>
+                  <ColumnDefinition Width="34.9*"/>
+                  <ColumnDefinition Width="15*"/>
+                  <ColumnDefinition Width="Auto"/>
+                  <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!--<Border Grid.Column="0" BorderBrush="Black" BorderThickness="1,0,0,1">
+                  <CheckBox HorizontalAlignment="Center" Margin="2"/>
+                </Border>-->
+
+                <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1,0,0,0">
+                  <TextBlock Margin="2" VerticalAlignment="Center" Text="Sku"/>
+                </Border>
+
+                <Border Grid.Column="2" BorderBrush="Black" BorderThickness="1,0,0,0">
+                  <TextBlock Margin="2" VerticalAlignment="Center" Text="Name"/>
+                </Border>
+
+                <Border Grid.Column="3" BorderBrush="Black" BorderThickness="1,0,0,0">
+                  <TextBlock Margin="2,0,0,0" VerticalAlignment="Center" Text="Price in dkk"/>
+                </Border>
+              </Grid>
+
+              <!-- Table Rows -->
+              <Border Grid.Row="1" BorderBrush="Black" BorderThickness="0,1,0,0" Margin="5,5,20,5"> 
+                <ItemsControl Name="ProductsItemControl" VerticalAlignment="Stretch">
+                  <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="models:ProductInternalDisplay">
+                      <Grid Height="38">
+                        <Grid.ColumnDefinitions>
+                          <ColumnDefinition Width="40"/>
+                          <ColumnDefinition Width="5*"/>
+                          <ColumnDefinition Width="50*"/>
+                          <ColumnDefinition Width="15*"/>
+                          <ColumnDefinition Width="Auto"/>
+                          <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.Column="0" BorderBrush="Black" BorderThickness="1,0,0,1">
+                          <CheckBox HorizontalAlignment="Center" Margin="2" Click="CheckboxClicked"/>
+                        </Border>
+
+                        <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1,0,0,1">
+                          <TextBlock Margin="2" VerticalAlignment="Center" Text="{Binding Sku}"/>
+                        </Border>
+
+                        <Border Grid.Column="2" BorderBrush="Black" BorderThickness="1,0,0,1">
+                          <TextBlock Margin="2" VerticalAlignment="Center" Text="{Binding Name}"/>
+                        </Border>
+
+                        <Border Grid.Column="3" BorderBrush="Black" BorderThickness="1,0,0,1">
+                          <TextBlock Margin="2" VerticalAlignment="Center" Text="{Binding PriceInclVAT}"/>
+                        </Border>
+
+                        <Border Grid.Column="4" BorderBrush="Black" BorderThickness="1,0,0,1">
+                          <Button Click="EditClick"
+                                  Background="SteelBlue"
+                                  Foreground="White"
+                                  CornerRadius="6"
+                                  Padding="5,0"
+                                  Margin="2,4,2,4"
+                                  FontSize="13"
+                                  VerticalAlignment="Center"
+                                  HorizontalContentAlignment="Center"
+                                  Width="50"
+                                  Height="28"
+                                  HorizontalAlignment="Center">Edit</Button>
+                        </Border>
+
+                        <Border Grid.Column="5" BorderBrush="Black" BorderThickness="1,0,1,1">
+                          <Button Click="ImageClick"
+                                  Background="SteelBlue"
+                                  Foreground="White"
+                                  CornerRadius="6"
+                                  VerticalAlignment="Center"
+                                  HorizontalContentAlignment="Center"
+                                  Padding="5,0"
+                                  Margin="2,4,2,4"
+                                  FontSize="13"
+                                  Width="60"
+                                  Height="28"
+                                  HorizontalAlignment="Center">Image</Button>
+                        </Border>
+                      </Grid>
+                    </DataTemplate>
+                  </ItemsControl.ItemTemplate>
+                </ItemsControl>
+              </Border>
+            </Grid>
+          </ScrollViewer>
+        </Grid>
+      </Border>
+    </Grid>
+  </ContentControl>
+</UserControl>

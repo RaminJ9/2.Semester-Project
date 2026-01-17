@@ -1,0 +1,115 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net9.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+        <ApplicationManifest>app.manifest</ApplicationManifest>
+        <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Avalonia" Version="11.2.1"/>
+        <PackageReference Include="Avalonia.Desktop" Version="11.2.1"/>
+        <PackageReference Include="Avalonia.Themes.Fluent" Version="11.2.1"/>
+        <PackageReference Include="Avalonia.Fonts.Inter" Version="11.2.1"/>
+        <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+        <PackageReference Include="Avalonia.Diagnostics" Version="11.2.1">
+            <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
+            <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="Avalonia.Xaml.Interactions" Version="11.2.0.1" />
+        <PackageReference Include="Avalonia.Xaml.Interactivity" Version="11.2.0.1" />
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.0-preview.3.25171.5" />
+        <PackageReference Include="Npgsql" Version="9.0.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="View\MainWindowView.axaml.cs">
+        <DependentUpon>MainWindowView.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+     
+      <ProjectReference Include="..\..\..\PIM\PIM\PIM.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Assets\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Assets\Media\AMD_Radeon_RX_7900_XTX.png" />
+      <None Remove="Assets\Media\AMD_Ryzen_9_7950X.png" />
+      <None Remove="Assets\Media\Apple_MacBook_Air_M2.png" />
+      <None Remove="Assets\Media\ASUS_ROG_Strix_G16.png" />
+      <None Remove="Assets\Media\ASUS_ROG_Strix_Z790-E.png" />
+      <None Remove="Assets\Media\ASUS_ROG_Swift_PG259QN.png" />
+      <None Remove="Assets\Media\Intel_Core_i9-13900K.png" />
+      <None Remove="Assets\Media\LG_OLED_C3.png" />
+      <None Remove="Assets\Media\LG_UltraGear_27GN950.png" />
+      <None Remove="Assets\Media\Lian_Li_O11_Dynamic_EVO.png" />
+      <None Remove="Assets\Media\Logitech_G_pro_x_superlight.png" />
+      <None Remove="Assets\Media\MSI_MEG_X670E_Ace.png" />
+      <None Remove="Assets\Media\MSI_Raider_GE78_HX.png" />
+      <None Remove="Assets\Media\NVIDIA_GeForce_RTX_4090.png" />
+      <None Remove="Assets\Media\Razer_DeathAdder_V3_Pro.png" />
+      <None Remove="Assets\Media\Samsung_QN90C_Neo_QLED.png" />
+      <None Remove="Assets\Media\SteelSeries_Apex_Pro_TKL.png" />
+      <None Remove="Assets\Media\Corsair_K70_RGB_MK.2.png" />
+      <AvaloniaResource Include="Assets\Media\Corsair K70 RGB MK.2.png" />
+      <None Remove="Assets\Media\Corsair_Vengeance_32GB_DDR5.png" />
+      <AvaloniaResource Include="Assets\Media\Corsair Vengeance 32GB DDR5.png" />
+      <None Remove="Assets\Media\Dell_XPS_13.png" />
+      <AvaloniaResource Include="Assets\Media\Dell XPS 13.png" />
+      <None Remove="Assets\Media\Dell_XPS_Desktop.png" />
+      <AvaloniaResource Include="Assets\Media\Dell XPS Desktop.png" />
+      <None Remove="Assets\Media\G.Skill_Trident_Z5_RGB_32GB.png" />
+      <AvaloniaResource Include="Assets\Media\G.Skill Trident Z5 RGB 32GB.png" />
+      <None Remove="Assets\Media\HP_Omen_45L.png" />
+      <AvaloniaResource Include="Assets\Media\HP Omen 45L.png" />
+      <None Remove="Assets\Media\NZXT_H7_Flow_NZXT.png" />
+      <AvaloniaResource Include="Assets\Media\NZXT H7 Flow.png" />
+      <None Remove="Assets\Media\AMD Radeon RX 7900 XTX.png" />
+      <AvaloniaResource Include="Assets\Media\AMD Radeon RX 7900 XTX.png" />
+      <None Remove="Assets\Media\AMD Ryzen 9 7950X.png" />
+      <AvaloniaResource Include="Assets\Media\AMD Ryzen 9 7950X.png" />
+      <None Remove="Assets\Media\Apple MacBook Air M2.png" />
+      <AvaloniaResource Include="Assets\Media\Apple MacBook Air M2.png" />
+      <None Remove="Assets\Media\ASUS ROG Strix G16.png" />
+      <AvaloniaResource Include="Assets\Media\ASUS ROG Strix G16.png" />
+      <None Remove="Assets\Media\ASUS ROG Strix Z790-E.png" />
+      <AvaloniaResource Include="Assets\Media\ASUS ROG Strix Z790-E.png" />
+      <None Remove="Assets\Media\ASUS ROG Swift PG259QN.png" />
+      <AvaloniaResource Include="Assets\Media\ASUS ROG Swift PG259QN.png" />
+      <None Remove="Assets\Media\Intel Core i9-13900K.png" />
+      <AvaloniaResource Include="Assets\Media\Intel Core i9-13900K.png" />
+      <None Remove="Assets\Media\LG OLED C3.png" />
+      <AvaloniaResource Include="Assets\Media\LG OLED C3.png" />
+      <None Remove="Assets\Media\LG UltraGear 27GN950.png" />
+      <AvaloniaResource Include="Assets\Media\LG UltraGear 27GN950.png" />
+      <None Remove="Assets\Media\Lian Li O11 Dynamic EVO.png" />
+      <AvaloniaResource Include="Assets\Media\Lian Li O11 Dynamic EVO.png" />
+      <None Remove="Assets\Media\Logitech G Pro X Superlight.png" />
+      <AvaloniaResource Include="Assets\Media\Logitech G Pro X Superlight.png" />
+      <None Remove="Assets\Media\MSI MEG X670E Ace.png" />
+      <AvaloniaResource Include="Assets\Media\MSI MEG X670E Ace.png" />
+      <None Remove="Assets\Media\MSI Raider GE78 HX.png" />
+      <AvaloniaResource Include="Assets\Media\MSI Raider GE78 HX.png" />
+      <None Remove="Assets\Media\NVIDIA GeForce RTX 4090.png" />
+      <AvaloniaResource Include="Assets\Media\NVIDIA GeForce RTX 4090.png" />
+      <None Remove="Assets\Media\Razer DeathAdder V3 Pro.png" />
+      <AvaloniaResource Include="Assets\Media\Razer DeathAdder V3 Pro.png" />
+      <None Remove="Assets\Media\Samsung QN90C Neo QLED.png" />
+      <AvaloniaResource Include="Assets\Media\Samsung QN90C Neo QLED.png" />
+      <None Remove="Assets\Media\SteelSeries Apex Pro TKL.png" />
+      <AvaloniaResource Include="Assets\Media\SteelSeries Apex Pro TKL.png" />
+      <None Remove="Assets\Media\info.png" />
+      <AvaloniaResource Include="Assets\Media\info.png" />
+      <None Remove="Assets\Media\Logo.png" />
+      <AvaloniaResource Include="Assets\Media\Logo.png" />
+    </ItemGroup>
+</Project>

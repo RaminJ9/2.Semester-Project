@@ -1,0 +1,71 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:SHOP.ViewModels"
+             xmlns:views="clr-namespace:SHOP.Views"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="vm:HomePageViewModel"
+             x:Class="SHOP.Views.HomePageView">
+    
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Spacing="40">
+
+            
+
+            <!-- == 2. Key Category Highlights == -->
+            <StackPanel Margin="20,0,20,0">
+                <TextBlock Text="Shop by Category" FontSize="24" FontWeight="SemiBold" Margin="0,0,0,15" Foreground="{StaticResource PrimaryTextBrush}"/>
+
+                <!-- Put your Top Categories here -->
+                
+            </StackPanel>
+
+            <!-- == 3. Full Categories Section (New) == -->
+            
+            <views:CategoryView DataContext="{Binding CategoryVm}" />   
+
+            <!-- == 4. Why Shop With Us? Section == -->
+            <Border Background="{StaticResource CardBackgroundBrush}" Padding="30,40" Margin="20,0,20,0" CornerRadius="8">
+                <StackPanel Spacing="25">
+                    <TextBlock Text="Why Choose ARNE?" FontSize="24" FontWeight="SemiBold" HorizontalAlignment="Center" Foreground="{StaticResource PrimaryTextBrush}"/>
+                    <UniformGrid Columns="3" HorizontalAlignment="Center">
+
+                        <!-- Feature 1 -->
+                        <StackPanel Spacing="8" Margin="20">
+                            <TextBlock Text="🚚" FontSize="30" HorizontalAlignment="Center" Foreground="{StaticResource InfoAccentBrush}"/>
+                            <TextBlock Text="Fast Shipping" FontSize="16" FontWeight="Medium" HorizontalAlignment="Center" Foreground="{StaticResource PrimaryTextBrush}"/>
+                            <TextBlock Text="Get your orders delivered quickly and reliably to your doorstep." FontSize="13" TextWrapping="Wrap" TextAlignment="Center" Foreground="{StaticResource SecondaryTextBrush}" MaxWidth="200"/>
+                        </StackPanel>
+
+                        <!-- Feature 2 -->
+                        <StackPanel Spacing="8" Margin="20">
+                            <TextBlock Text="🛡️" FontSize="30" HorizontalAlignment="Center" Foreground="{StaticResource InfoAccentBrush}"/>
+                            <TextBlock Text="Secure Warranty" FontSize="16" FontWeight="Medium" HorizontalAlignment="Center" Foreground="{StaticResource PrimaryTextBrush}"/>
+                            <TextBlock Text="Enjoy peace of mind with included warranties on major products." FontSize="13" TextWrapping="Wrap" TextAlignment="Center" Foreground="{StaticResource SecondaryTextBrush}" MaxWidth="200"/>
+                        </StackPanel>
+
+                        <!-- Feature 3 -->
+                        <StackPanel Spacing="8" Margin="20">
+                            <TextBlock Text="💬" FontSize="30" HorizontalAlignment="Center" Foreground="{StaticResource InfoAccentBrush}"/>
+                            <TextBlock Text="Expert Support" FontSize="16" FontWeight="Medium" HorizontalAlignment="Center" Foreground="{StaticResource PrimaryTextBrush}"/>
+                            <TextBlock Text="Our knowledgeable tech team is ready to assist with your queries." FontSize="13" TextWrapping="Wrap" TextAlignment="Center" Foreground="{StaticResource SecondaryTextBrush}" MaxWidth="200"/>
+                        </StackPanel>
+
+                    </UniformGrid>
+                </StackPanel>
+            </Border>
+
+            <!-- == Final spacing before footer == -->
+            <Border Background="{StaticResource CardBackgroundBrush}" Padding="30,40" Margin="20,0,20,0" CornerRadius="8">
+                <StackPanel Spacing="20">
+                    <TextBlock Text="Guides &amp; Tips" FontSize="24" FontWeight="SemiBold" Foreground="{StaticResource PrimaryTextBrush}"/>
+                    <views:ContentPagesView DataContext="{Binding ContentVm}" />            
+
+                </StackPanel>
+            </Border>
+            <Panel Height="40"/>
+        </StackPanel>
+    </ScrollViewer>
+
+</UserControl>

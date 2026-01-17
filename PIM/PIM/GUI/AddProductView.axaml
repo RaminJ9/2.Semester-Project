@@ -1,0 +1,113 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="PIM.AddProductView">
+
+    <Grid Background="White" ColumnDefinitions="*,*" RowDefinitions="30, 1*" >
+
+        <Button Grid.Row="0"
+                Click="BackButton"
+                Background="SteelBlue"
+                Foreground="White"
+                CornerRadius="6"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top">← Back</Button>
+      
+       
+        <Border BorderBrush="SteelBlue" BorderThickness="1" Grid.Column="0" Grid.Row="1" 
+                Background="White"
+                CornerRadius="8"
+                Padding="20"
+                Width="400"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center">
+            <StackPanel Spacing="10">
+                
+                <TextBlock Text="Add Product" FontSize="18" FontWeight="Bold" Foreground="SteelBlue" HorizontalAlignment="Center"/>
+
+                
+                <TextBox Name="P_name" Watermark="Product name"/>
+                <TextBox Name="P_manu" Watermark="Product manufacturer"/>
+                <TextBox Name="P_retprice" Watermark="Product retail price in DKK"/>
+                <TextBox Name="P_saleprice_vat" Watermark="Product sales price before VAT in DKK"/>
+                <TextBox Name="P_height" Watermark="Product height in CM"/>
+                <TextBox Name="P_width" Watermark="Product width in CM"/>
+                <TextBox Name="P_depth" Watermark="Product depth in CM"/>
+                <TextBox Name="P_weight" Watermark="Product weight in KG"/>
+                <TextBox Name="P_color" Watermark="Product color"/>
+                <TextBox Name="P_long_d" Watermark="Product long description" TextWrapping="Wrap" AcceptsReturn="True" Height="60"/>
+
+           
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
+                    <Button Content="Add Product" Click="Add_Product"
+                            Background="SteelBlue"
+                            Foreground="White"
+                            Height="35"
+                            Width="100"
+                            CornerRadius="6"
+                            HorizontalContentAlignment="Center" VerticalAlignment="Center"/>
+                    <Button Content="Clear" Click="ClearHandler"
+                            Background="SteelBlue"
+                            Foreground="White"
+                            Height="35"
+                            Width="100"
+                            CornerRadius="6"
+                            HorizontalContentAlignment="Center" VerticalAlignment="Center"/>
+                </StackPanel>
+
+            
+                <TextBlock Name="Results" Foreground="Black" TextAlignment="Center" Padding="10"/>
+            </StackPanel>
+        </Border>
+
+        
+      
+        <Border BorderBrush="SteelBlue" BorderThickness="1" Margin="50,0,0,0" Grid.Column="1" Grid.Row="1"
+                Background="White"
+                CornerRadius="8"
+                Padding="20"
+                Width="350"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center">
+            <StackPanel Spacing="10">
+            
+                <TextBlock Text="Selected categories for new product" FontWeight="Bold"/>
+                
+                <TextBox Name="SelectedBox" Height="30"/>
+                
+                <ComboBox Name="MyComboBox"
+                          PlaceholderText="Select a category"
+                          SelectionChanged="MyComboBox_SelectionChanged"
+                          MaxDropDownHeight="100"/>
+
+                
+                <TextBlock Text="Create New Category" FontWeight="Bold" Margin="0,10,0,0"/>
+                <TextBox Name="NewTagTextBox" Watermark="New category"/>
+                <StackPanel HorizontalAlignment="Center">
+                    <Button Content="Create New Category" Click="NewCategory"
+                            Background="SteelBlue"
+                            Foreground="White"
+                            Height="35"
+                            Width="200"
+                            CornerRadius="6"
+                            HorizontalContentAlignment="Center" VerticalAlignment="Center"/>
+
+                    
+                    <TextBlock Name="NewTagConfirm"/>
+
+                    
+                    <Button Content="Clear and Load Categories" Click="ClearTags_Click"
+                            Background="SteelBlue"
+                            Foreground="White"
+                            Height="35"
+                            Width="200"
+                            CornerRadius="6"
+                            HorizontalContentAlignment="Center" VerticalAlignment="Center"/>
+                </StackPanel>
+                
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

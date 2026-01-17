@@ -1,0 +1,33 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="OMS_GUI.Views.SalesReportWindowView"
+             Width="824" Height="600"
+             xmlns:vm="clr-namespace:OMS_GUI.ViewModels"
+             x:DataType="vm:SalesReportWindowViewModel">
+    
+    <StackPanel Margin="20" Spacing="15">
+        <TabItem Header="Sales Report" FontWeight="Bold" Foreground="Black"/>
+
+        <!-- Generate Button -->
+        <Button Content="Generate"
+                FontSize="16"
+                Height="35"
+                Width="120"
+                HorizontalAlignment="Left"
+                Margin="0,15,0,0"/>
+
+        <!-- Report Box -->
+        <Border BorderBrush="Gray"
+                BorderThickness="1"
+                Height="250"
+                Margin="0,20,0,0">
+            <TextBlock Text="Report will appear here"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Foreground="Gray"/>
+        </Border>
+    </StackPanel>
+</UserControl>

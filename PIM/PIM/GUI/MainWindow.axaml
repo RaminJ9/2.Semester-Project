@@ -1,0 +1,68 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:pim="clr-namespace:PIM"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="PIM.MainWindow"
+        Title="PIM"
+        WindowState="Maximized"
+        Background="White"> 
+
+    <!--styling all the tabs at the same time with style-->
+    <Window.Styles>
+        <Style Selector="TextBlock.tab">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="SteelBlue"/>
+            <Setter Property="Margin" Value="12,6"/>
+        </Style>
+    </Window.Styles>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <TabControl x:Name="MainTabs" Grid.Row="0">
+
+            <!-- Home -->
+            <TabItem>
+                <TabItem.Header>
+                    <TextBlock Classes="tab">HOME</TextBlock>
+                </TabItem.Header>
+                <pim:LoginView/>
+            </TabItem>
+            
+            <!-- User Management  -->
+            <TabItem Name="UserManagementTab" IsVisible="False">
+                <TabItem.Header>
+                    <TextBlock Classes="tab">USER MANAGEMENT</TextBlock>
+                </TabItem.Header>
+                <pim:UserManagementView/>
+            </TabItem>
+
+            
+            <!-- View all products -->
+            <TabItem Name="ViewProductsTab" IsVisible="False">
+                <TabItem.Header>
+                    <TextBlock Classes="tab">MANAGE PRODUCTS</TextBlock>
+                </TabItem.Header>
+                <pim:ViewAllProducts/>
+            </TabItem>
+            
+            
+
+
+            <!-- Import / Export Tab -->
+            <TabItem Name="ImportExportTab" IsVisible="False">
+                <TabItem.Header>
+                    <TextBlock Classes="tab">IMPORT / EXPORT</TextBlock>
+                </TabItem.Header>
+                <pim:ImportExportView/>
+            </TabItem>
+
+            
+
+        </TabControl>
+    </Grid>
+</Window>

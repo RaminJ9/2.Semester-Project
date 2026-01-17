@@ -1,0 +1,85 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="PIM.UpdateProductView">
+    <Grid RowDefinitions="30, 1*">
+        <Button Click="BackButton"
+                Background="SteelBlue"
+                Foreground="White"
+                CornerRadius="6">← Back</Button>
+
+        <Border Grid.Row="1" BorderBrush="SteelBlue" BorderThickness="1"
+                Background="White" CornerRadius="8" Padding="20" Margin="20"
+                Width="600"
+                Height="650">
+            
+            
+                <StackPanel Width="500" Spacing="10">
+                    <TextBlock Foreground="SteelBlue" Text="Update Product" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"/>
+
+                    <Button Content="Save Product Information"
+                            Click="OnSaveProductInformationClick"
+                            HorizontalAlignment="Center"
+                            Background="SteelBlue"
+                            Foreground="White"
+                            VerticalAlignment="Center"
+                            HorizontalContentAlignment="Center"
+                            Height="35"
+                            Width="200"
+                            CornerRadius="6"/>
+
+                    <TextBox Name="TextBoxMessageDisplayer"
+                             IsReadOnly="True"
+                             HorizontalAlignment="Center"/>
+                    <Grid ColumnDefinitions="1*,1*" RowDefinitions="Auto">
+                        <!-- Left info -->
+                        <StackPanel Grid.Column="0" Spacing="5" Margin="0,0,10,0">
+                            <TextBlock Text="Name"/>
+                            <TextBox Name="TextBoxShowName" IsReadOnly="True"/>
+
+                            <TextBlock Text="Manufacturer"/>
+                            <TextBox Name="TextBoxShowManufacturer" IsReadOnly="True"/>
+
+                            <TextBlock Text="Retail Price"/>
+                            <TextBox Name="TextBoxShowRetailPrice" IsReadOnly="True"/>
+
+                            <TextBlock Text="Sales Price VAT"/>
+                            <TextBox Name="TextBoxShowSalesPriceVAT" IsReadOnly="True"/>
+
+                            <TextBlock Text="Sales Price"/>
+                            <TextBox Name="TextBoxShowSalesPrice" IsReadOnly="True"/>
+                        </StackPanel>
+
+                        <!-- Right info -->
+                        <StackPanel Grid.Column="1" Spacing="5" Margin="10,0,0,0">
+                            <TextBlock Text="Height"/>
+                            <TextBox Name="TextBoxShowHeight" IsReadOnly="True"/>
+
+                            <TextBlock Text="Width"/>
+                            <TextBox Name="TextBoxShowWidth" IsReadOnly="True"/>
+
+                            <TextBlock Text="Depth"/>
+                            <TextBox Name="TextBoxShowDepth" IsReadOnly="True"/>
+
+                            <TextBlock Text="Weight"/>
+                            <TextBox Name="TextBoxShowWeight" IsReadOnly="True"/>
+
+                            <TextBlock Text="Color"/>
+                            <TextBox Name="TextBoxShowColor" IsReadOnly="True"/>
+                        </StackPanel>
+                    </Grid>
+
+
+              
+                    <TextBlock Text="Long Description" Margin="0,10,0,0"/>
+                    <TextBox Name="TextBoxShowLongDescription"
+                             IsReadOnly="True"
+                             AcceptsReturn="True"
+                             Height="100"
+                             TextWrapping="Wrap"/>
+                </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

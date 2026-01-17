@@ -1,0 +1,57 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="PIM.ImportExportView">
+	
+		<Grid Background="White" >
+        
+        <Border BorderBrush="SteelBlue" BorderThickness="1" Grid.Column="0" 
+                Background="White"
+                CornerRadius="8"
+                Padding="20"
+                Width="550"
+                Height="400"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+	        
+	        <StackPanel VerticalAlignment="Center" Spacing="30">
+		        <TextBlock Text="Import And Export" FontSize="18" FontWeight="Bold" Foreground="SteelBlue" HorizontalAlignment="Center"/>
+		        <Grid>
+		            <StackPanel Grid.Column="" Orientation="Horizontal" HorizontalAlignment="Center">
+			            <Button Click="ExportFile_Click" Grid.Column="0"
+			                    Background="SteelBlue"
+			                    Foreground="White"
+			                    Height="35"
+			                    Width="150"
+			                    CornerRadius="6"
+			                    Margin="0,0,50,0"
+			                    HorizontalContentAlignment="Center" VerticalAlignment="Center">Export products</Button>
+			            <Button Click="OpenFileButton_Click" Grid.Column="2"
+			                    Background="SteelBlue"
+			                    Foreground="White"
+			                    Height="35"
+			                    Width="150"
+			                    CornerRadius="6"
+			                    HorizontalContentAlignment="Center" VerticalAlignment="Center">Import products</Button>
+							
+		            </StackPanel>
+		            </Grid>
+					<Grid HorizontalAlignment="Center" ColumnDefinitions="auto,10,auto">
+						<TextBox Grid.Column="2" Watermark="Search term  for export" Name="SearchTermBox" Width="220" TextAlignment="Center"></TextBox>
+						<TextBox Grid.Column="0" Watermark="Category term for export" Name="categoryTermBox" Width="220" TextAlignment="Center"></TextBox>
+					</Grid>
+	            <TextBox IsReadOnly="True" VerticalAlignment="Center" HorizontalAlignment="Center" Name="displayInformation" Height="100" Width="450"></TextBox>
+	            <Button Click="Confirm_Click" Name="confirm" HorizontalAlignment="Center" IsEnabled="False"
+	                    Background="SteelBlue"
+	                    Foreground="White"
+	                    Height="35"
+	                    Width="100"
+	                    CornerRadius="6"
+	                    HorizontalContentAlignment="Center" VerticalAlignment="Center">Confirm</Button>
+            </StackPanel>
+        </Border>
+        
+	</Grid>
+</UserControl>

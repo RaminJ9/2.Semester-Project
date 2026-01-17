@@ -1,0 +1,78 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="PIM.PictureIdentifierView">
+
+    <Grid RowDefinitions="Auto, *" Background="White">
+       
+        <Button Grid.Row="0"
+                Click="BackButton"
+                Background="SteelBlue"
+                Foreground="White"
+                CornerRadius="6"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top">← Back</Button>
+        
+        <Grid Grid.Row="1" ColumnDefinitions="1*,1*" RowDefinitions="30, 1*" VerticalAlignment="Center" HorizontalAlignment="Center">
+            
+            <Border Grid.Column="0"
+                    Grid.Row="1"
+                    Width="450"
+                    Background="White"
+                    CornerRadius="10"
+                    BorderBrush="SteelBlue"
+                    BorderThickness="1"
+                    Padding="20"
+                    Margin="10">
+                <StackPanel Spacing="10">
+
+                    
+                    <TextBlock Text="Picture Identifier" FontSize="20" FontWeight="Bold" Foreground="SteelBlue" HorizontalAlignment="Center"/>
+                    
+
+                
+                    <Grid ColumnDefinitions="Auto,*" RowDefinitions="*,*,*,*,*,*,*,*">
+                      
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Name:" Margin="5"/>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Price:" Margin="5"/>
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Color:" Margin="5"/>
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Height:" Margin="5"/>
+                        <TextBlock Grid.Row="4" Grid.Column="0" Text="Width:" Margin="5"/>
+                        <TextBlock Grid.Row="5" Grid.Column="0" Text="Length:" Margin="5"/>
+                        <TextBlock Grid.Row="6" Grid.Column="0" Text="Weight:" Margin="5"/>
+
+                       
+                        <TextBox Grid.Row="0" Grid.Column="1" Name="TextBoxName" IsReadOnly="True" Margin="5"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" Name="TextBoxPrice" IsReadOnly="True" Margin="5"/>
+                        <TextBox Grid.Row="2" Grid.Column="1" Name="TextBoxColor" IsReadOnly="True" Margin="5"/>
+                        <TextBox Grid.Row="3" Grid.Column="1" Name="TextBoxHeight" IsReadOnly="True" Margin="5"/>
+                        <TextBox Grid.Row="4" Grid.Column="1" Name="TextBoxWidth" IsReadOnly="True" Margin="5"/>
+                        <TextBox Grid.Row="5" Grid.Column="1" Name="TextBoxDepth" IsReadOnly="True" Margin="5"/>
+                        <TextBox Grid.Row="6" Grid.Column="1" Name="TextBoxWeight" IsReadOnly="True" Margin="5"/>
+                    </Grid>
+
+                   
+                    <TextBox Name="TextBoxMessageDisplayerPicture" IsReadOnly="True" Height="60" Margin="0,10,0,0" TextWrapping="Wrap" />
+
+                </StackPanel>
+            </Border>
+
+          
+            <Border Grid.Column="1"
+                    Grid.Row="1"
+                    Width="450" Height="450"
+                    Background="White"
+                    CornerRadius="10"
+                    BorderBrush="SteelBlue"
+                    BorderThickness="1"
+                    Padding="10"
+                    Margin="10"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                <Image Name="ProductImage" Stretch="Uniform" MaxWidth="400" MaxHeight="400"/>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

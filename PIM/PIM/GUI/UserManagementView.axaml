@@ -1,0 +1,67 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="PIM.UserManagementView">
+    
+    <Grid Background="White">
+        <Button Grid.Row="0"
+                Click="BackButton"
+                Background="SteelBlue"
+                Foreground="White"
+                CornerRadius="6"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top">← Back</Button>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="20" Orientation="Horizontal">
+            <!-- Add User -->
+            <Border Width="300" Background="White" BorderBrush="SteelBlue" BorderThickness="1"
+                    CornerRadius="10" Padding="20">
+                <StackPanel Spacing="10">
+                    <TextBlock Foreground="SteelBlue" Text="Add User" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    <TextBox Name="Username_Add" Watermark="Username"/>
+                    <TextBox Name="Password_Add" PasswordChar="*" Watermark="Password"/>
+                    
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
+                        <TextBox PasswordChar="*" Name="SupervisorCode" Watermark="Admin Code" Width="130"/>
+                        <Button  Click="Button_Add_User" Name="Button_AddUser"
+                                HorizontalContentAlignment="Center" VerticalAlignment="Center"
+                                Background="SteelBlue"
+                                Foreground="White"
+                                Height="35"
+                                Width="100"
+                                CornerRadius="6">
+                            Apply
+                        </Button>
+                    </StackPanel>
+                    
+                    <TextBox Foreground="Black" Name="outputAdd" Height="50" Width="260" IsReadOnly="True"/>
+                </StackPanel>
+            </Border>
+
+            <!-- Delete User -->
+            <Border Margin="50,0,0,0" Width="300" Background="White" BorderBrush="SteelBlue" BorderThickness="1"
+                    CornerRadius="10" Padding="20">
+                <StackPanel Spacing="10">
+                    <TextBlock Foreground="SteelBlue" Text="Delete User" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    <TextBox Name="Username_Delete" Watermark="Username"/>
+                    
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10">
+                        <TextBox PasswordChar="*" Name="SupervisorCode_Delete" Watermark="Admin Code" Width="130"/>
+                        <Button Click="Button_Delete_User" Name="Button_DeleteUser"
+                                HorizontalContentAlignment="Center" VerticalAlignment="Center"
+                                Background="SteelBlue"
+                                Foreground="White"
+                                Height="35"
+                                Width="100"
+                                CornerRadius="6">
+                            Apply
+                        </Button>
+                    </StackPanel>
+                    
+                    <TextBox Foreground="Black" Name="outputAdd_Delete" Height="50" Width="260" IsReadOnly="True"/>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </Grid>
+</UserControl>

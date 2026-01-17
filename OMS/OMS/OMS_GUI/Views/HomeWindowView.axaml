@@ -1,0 +1,31 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="824" d:DesignHeight="600"
+             Width="824" Height="600"
+             x:Class="OMS_GUI.Views.HomeWindowView"
+             xmlns:vm="clr-namespace:OMS_GUI.ViewModels"
+             x:DataType="vm:MainWindowViewModel">
+    
+    <Border Padding="90">
+        <StackPanel Spacing="25">
+            <TabItem Header="Home" HorizontalAlignment="Center" FontSize="50" FontWeight="Bold" Foreground="Black"></TabItem>
+			<Label HorizontalAlignment="Center" Content="Welcome, admin!"></Label>
+            <StackPanel Spacing="15" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Spacing="20">
+                    <Button Content="Order finder" HorizontalAlignment="Stretch" Height="75" Width="200" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></Button>
+                    <Button Content="Order changer" HorizontalAlignment="Stretch" Height="75" Width="200" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></Button>
+                </StackPanel>
+                <StackPanel Spacing="20">
+                    <Button Content="Current order" HorizontalAlignment="Stretch" Height="75" Width="200" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></Button>
+                    <Button Content="Sales report" HorizontalAlignment="Stretch" Height="75" Width="200" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></Button>
+                </StackPanel>
+                <StackPanel Spacing="20">
+                    <Button Content="Stock status" HorizontalAlignment="Stretch" Height="75" Width="200" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></Button>
+                    <Button Content="Stock updater" HorizontalAlignment="Stretch" Height="75" Width="200" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></Button>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</UserControl>

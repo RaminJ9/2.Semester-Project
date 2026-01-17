@@ -1,0 +1,30 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="OMS_GUI.App"
+             xmlns:local="clr-namespace:OMS_GUI"
+             RequestedThemeVariant="Default">
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+    <Application.DataTemplates>
+        <local:ViewLocator/>
+    </Application.DataTemplates>
+
+	<Application.Styles>
+		<FluentTheme />
+		<StyleInclude Source="Styles\AppDefaultStyle.axaml"></StyleInclude>
+	</Application.Styles>
+
+	<Application.Resources>
+		<SolidColorBrush x:Key="PrimaryText">White</SolidColorBrush>
+		<SolidColorBrush x:Key="PrimaryBackground">#b1cefc</SolidColorBrush>
+		<SolidColorBrush x:Key="PrimaryButtonBackground">#2664ad</SolidColorBrush>
+		<LinearGradientBrush x:Key="PrimaryBackgroundGradient" StartPoint="0%, 0%" EndPoint="100%, 0%">
+			<GradientStop Offset="0" Color="#00387a"></GradientStop>
+			<GradientStop Offset="1" Color="#2b61a1"></GradientStop>
+		</LinearGradientBrush>
+
+		<SolidColorBrush x:Key="PrimaryHoverText">#CFCFCF</SolidColorBrush>
+		<SolidColorBrush x:Key="PrimaryActiveBackground">DodgerBlue</SolidColorBrush>
+		<SolidColorBrush x:Key="PrimaryHoverBackground">CornflowerBlue</SolidColorBrush>
+	</Application.Resources>
+</Application>
