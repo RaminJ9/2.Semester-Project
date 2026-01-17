@@ -1,3 +1,1 @@
-Semester project for 1 of the classes Diplom Ingeniør SoftwareTeknologi 2.Semester Spring 2025 
-
-
+2nd Semester Project. Product information management (PIM) developed by our group. We worked with 3 other groups, they were responsible for Digital Asset Management (DAM) System, Order Management System (OMS) & Shop (Front-end part that connect all of them togetehr) 
